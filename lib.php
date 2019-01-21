@@ -194,6 +194,7 @@ function block_completion_progress_get_activities($courseid, $config = null, $fo
                     'context'    => $cm->context,
                     'icon'       => $cm->get_icon_url(),
                     'available'  => $cm->available,
+                    'idnumber'   => $cm->idnumber,
                 );
             }
         }
@@ -488,6 +489,10 @@ function block_completion_progress_bar($activities, $completions, $config, $user
         }
         if ($longbars != 'wrap' && $counter == $numactivities) {
             $celloptions['class'] .= ' lastProgressBarCell';
+        }
+
+        if (!empty($activity['idnumber'])) {
+            $celloptions['data-idnumber'] = $activity['idnumber'];
         }
 
         // Place the NOW indicator.
